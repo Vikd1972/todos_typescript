@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 
 export interface Button {  
-    illuminatebutton?: boolean;
+    illuminatebutton?: string;
 }
 
-const ControlPanel = styled.div`
+const ControlPanel = styled.div<Button>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,35 +18,53 @@ const ControlPanel = styled.div`
       cursor: pointer;  
     }
   }
-
+  .button {
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 0 5px 0 5px;
+    background-color: #ffe0b2;
+    cursor: pointer;
+    border: 1px solid #424242;
+    border-radius: 10px;
+    caret-color: transparent !important;
+    width: auto;
+    &:hover {
+      background-color: #ffcc80;
+    }
+  }
+  .button-all {
+    ${(props) => {
+      if (props.illuminatebutton === 'all') {
+        return css`
+          background-color: #ffcc80;
+        `;
+      }
+    }}
+  }
+  .button-active {
+    ${(props) => {
+      if (props.illuminatebutton === 'active') {
+        return css`
+          background-color: #ffcc80;
+        `;
+      }
+    }}
+  }
+  .button-completed {
+    ${(props) => {
+      if (props.illuminatebutton === 'completed') {
+        return css`
+          background-color: #ffcc80;
+        `;
+      }
+    }}
+  }
   .button-clear {
     opacity: 0;
   }
 `;
 
-const ButtonFilter = styled.button<Button>`
-  font-size: 16px;
-  margin-left: 10px;
-  padding: 0 5px 0 5px;
-  background-color: #ffe0b2;
-  cursor: pointer;
-  border: 1px solid #424242;
-  border-radius: 10px;
-  caret-color: transparent !important;
-  width: auto;
-  &:hover {
-    background-color: #ffcc80;
-  }
-  ${(props) => {
-    if (props.illuminatebutton) {     
-      return css`
-        background-color: #ffcc80;
-      `;
-    }
-  }}  
-`;
-
-const ControlPanelButton = styled.div<Button>`
+const ControlPanelButton = styled.div`
   display: flex;
   flex-direction: row;
   @media (max-width: 445px) {
@@ -57,6 +75,5 @@ const ControlPanelButton = styled.div<Button>`
 
 export {
   ControlPanel,
-  ControlPanelButton,
-  ButtonFilter
+  ControlPanelButton
 }

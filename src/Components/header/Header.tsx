@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../Store/hooks';
 
 import { clearCompleted, selectShowFiltered } from '../../Store/todoSlice';
 
-import { ControlPanel, ControlPanelButton, ButtonFilter } from './Header.styled'
+import { ControlPanel, ControlPanelButton } from './Header.styled'
 
 export const Header: React.FC = () => {
   const { showFiltered, notes } = useAppSelector(state => state.todo)
@@ -12,35 +12,48 @@ export const Header: React.FC = () => {
   const clearBtn = notes.filter(note => note.isDone).length === 0
 
   const dispatch = useAppDispatch()
+  
+ /* let illuminatebutton = showFiltered;
+  switch (illuminatebutton) {
+  case 'all'
+    alert( 'Маловато' );
+    break;
+  case 'active':
+    alert( 'В точку!' );
+    break;
+  case 'completed':
+    alert( 'Перебор' );
+    break;
+}*/
 
   return (<div>
-    <ControlPanel>
+    <ControlPanel
+      illuminatebutton={showFiltered}>
+
       <div 
         className='count'>
         {count} items left
       </div>
       <ControlPanelButton
       >      
-        <ButtonFilter
-          illuminatebutton={showFiltered === 'all'}
+        <div
+          className={`${'button'} ${'button-all'}`}
           onClick={() => dispatch(selectShowFiltered('all'))}
-        >All</ButtonFilter>
-        <ButtonFilter
-          className='button'
-          illuminatebutton={showFiltered === 'active'}
+        >All</div>
+        <div
+          className={`${'button'} ${'button-active'}`}
           onClick={() => dispatch(selectShowFiltered('active'))}
-        >Active</ButtonFilter>
-        <ButtonFilter
-          className='button'
-          illuminatebutton={showFiltered === 'completed'}
+        >Active</div>
+        <div
+          className={`${'button'} ${'button-completed'}`}
           onClick={() => dispatch(selectShowFiltered('completed'))}
-        >Completed</ButtonFilter>      
+        >Completed</div>      
       </ControlPanelButton>
-      <ButtonFilter        
+      <div       
         className={`${'button'} ${clearBtn ? 'button-clear' : undefined}`}
         onClick={() => dispatch(clearCompleted())}>
         Clear completed
-      </ButtonFilter>
+      </div>
   </ControlPanel>
     </div>
   );
