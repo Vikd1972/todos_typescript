@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from './store'
 
-interface Notes {
+export interface Notes {
   id: string,
   text: string,
   isDone: boolean
 }
-
+type FilterTypes = 'all' | 'completed' | 'active';
 interface TodoState {
-  notes: Array<Notes>,
+  notes: Notes[],
   isDoneAll: boolean,
-  showFiltered: string
+  showFiltered: FilterTypes
 }
 
 const initialState: TodoState = {
@@ -23,18 +23,18 @@ export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    addNewNote: (state, action) => {     
+    addNewNote: (state, action: PayloadAction<Notes>) => {     
       state.notes.push(action.payload)
     },
 
-    deleteNote: (state, action) => {
+    deleteNote: (state, action: PayloadAction<string>) => {
       const index = state.notes.findIndex(
         (note) => note.id === action.payload
       );
       state.notes.splice(index, 1);
     },
 
-    noteIsDone: (state, action) => {
+    noteIsDone: (state, action: PayloadAction<string>) => {
       for (let note of state.notes) {
         if (note.id === action.payload) {
           note.isDone = !note.isDone;
@@ -49,7 +49,7 @@ export const todoSlice = createSlice({
       state.isDoneAll = !state.isDoneAll
     },
 
-    changeNote: (state, action) => {
+    changeNote: (state, action: PayloadAction<{ id: string;  text: string}>) => {
       for (let note of state.notes) {
         if (note.id === action.payload.id) {
           note.text = action.payload.text;
@@ -64,7 +64,7 @@ export const todoSlice = createSlice({
       }
     },
 
-    selectShowFiltered: (state, action) => {
+    selectShowFiltered: (state, action: PayloadAction<FilterTypes>) => {
       state.showFiltered = action.payload
     }
   }
@@ -79,7 +79,5 @@ export const {
   clearCompleted,
   selectShowFiltered
 } = todoSlice.actions
-
-export const selectTodo = (state: RootState) => state.todo
 
 export default todoSlice.reducer

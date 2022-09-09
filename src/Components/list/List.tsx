@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../Store/hooks';
 
 import Note from '../note/Note';
 import { getShowNotes } from '../../Store/selector';
 
+
 function List() {
-  const noteList = useSelector(getShowNotes)
+  const noteList  = useAppSelector(getShowNotes)
   return (
     <div>
       {noteList.map(note => (

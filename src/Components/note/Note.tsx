@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../Store/hooks';
 
-import { deleteNote, noteIsDone, changeNote } from '../../Store/todoSlice';
+import { deleteNote, noteIsDone, changeNote, Notes } from '../../Store/todoSlice';
 
 import { DeleteButton, Record, RecordNote, TextOrEdit } from './Note.styled'
 
-function Note(props) {
+type Props = {
+  note: Notes;
+};
+
+export const Note: React.FC<Props> = (props) => {
 
   const [changingNote, setChangingNote] = useState(false); 
   const [text, setText] = useState('');
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onDeleteNote = () => {
     dispatch(deleteNote(props.note.id))   
@@ -24,12 +28,14 @@ function Note(props) {
     setText(props.note.text)
     setChangingNote(!changingNote);
   }
-
-  function writingNewText(e) {
+  
+  type InputEvent = React.ChangeEvent<HTMLInputElement>;
+  function writingNewText(e: InputEvent) {
     setText(e.target.value);
   }
 
-  function onChangeNote(e) {
+  type ButtonEvent = React.KeyboardEvent<HTMLFormElement>;
+  function onChangeNote(e: ButtonEvent) {
     e.preventDefault()
     dispatch(changeNote({ id: props.note.id, text: text }));
     setChangingNote(!changingNote);

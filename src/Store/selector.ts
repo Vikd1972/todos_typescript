@@ -8,13 +8,12 @@ export const getShowNotes = createSelector(
   [getShowFiltered, getNotes],
   (showFiltered, notes) => {
     switch (showFiltered) {
-      case "all":
-        return notes;
       case "active":
         return notes.filter((note) => !note.isDone);
       case "completed":
         return notes.filter((note) => note.isDone);
       default:
+        return notes;
     }
   }
 );

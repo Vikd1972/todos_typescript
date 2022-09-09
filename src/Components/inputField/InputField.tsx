@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
 
+import { useAppSelector, useAppDispatch } from '../../Store/hooks'
 import { addNewNote, allIsDone } from '../../Store/todoSlice';
 
 import { InputForm } from './InputField.styled'
@@ -10,13 +9,15 @@ import { InputForm } from './InputField.styled'
 function InputField() {
   const [text, setText] = useState('')
 
-  const isDoneAll = useSelector(state => state.todo.isDoneAll)
+  const isDoneAll = useAppSelector(state => state.todo.isDoneAll)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const onTextChanged = e => setText(e.target.value)
-
-  const onSaveNewNote = (e) => {   
+  const onTextChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value)
+  }
+  
+  const onSaveNewNote = (e: React.KeyboardEvent<HTMLFormElement>) => {  
     e.preventDefault()
     if (!text.trim()) {
       return
