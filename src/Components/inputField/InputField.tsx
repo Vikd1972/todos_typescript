@@ -6,6 +6,8 @@ import { addNewNote, allIsDone } from '../../Store/todoSlice';
 
 import { InputForm } from './InputField.styled'
 
+
+
 function InputField() {
   const [text, setText] = useState('')
 
@@ -16,6 +18,7 @@ function InputField() {
   const onTextChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
   }
+
   
   const onSaveNewNote = (e: React.KeyboardEvent<HTMLFormElement>) => {  
     e.preventDefault()

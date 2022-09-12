@@ -42,7 +42,7 @@ export const Note: React.FC<Props> = (props) => {
   }
   
   return (
-    <Record >
+    <Record /*theme={{font_color: 'red'}}*/>
       <RecordNote>
         <input
           className='note-is-done'
@@ -61,7 +61,7 @@ export const Note: React.FC<Props> = (props) => {
                 onChange={writingNewText}/>
             </form>
           :
-            <div
+            <div  
               className={`${'note-text'} ${props.note.isDone ? 'record-is-done' : undefined}`}
               onDoubleClick={preparigChange}
             >{props.note.text}

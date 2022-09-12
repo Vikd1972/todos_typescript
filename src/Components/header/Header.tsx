@@ -5,6 +5,7 @@ import { clearCompleted, selectShowFiltered } from '../../Store/todoSlice';
 
 import { ControlPanel, ControlPanelButton } from './Header.styled'
 
+
 export const Header: React.FC = () => {
   const { showFiltered, notes } = useAppSelector(state => state.todo)
 
@@ -13,18 +14,7 @@ export const Header: React.FC = () => {
 
   const dispatch = useAppDispatch()
   
- /* let illuminatebutton = showFiltered;
-  switch (illuminatebutton) {
-  case 'all'
-    alert( 'Маловато' );
-    break;
-  case 'active':
-    alert( 'В точку!' );
-    break;
-  case 'completed':
-    alert( 'Перебор' );
-    break;
-}*/
+  
 
   return (<div>
     <ControlPanel
@@ -37,7 +27,7 @@ export const Header: React.FC = () => {
       <ControlPanelButton
       >      
         <div
-          className={`${'button'} ${'button-all'}`}
+          className="button button-all"
           onClick={() => dispatch(selectShowFiltered('all'))}
         >All</div>
         <div

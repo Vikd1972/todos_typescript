@@ -7,7 +7,7 @@ const DeleteButton = styled.div`
   height: 37px;
   border: none;
   font-size: 18px;
-  background-color: #fff3e0;
+  background-color: ${props => props.theme.basic_background};
   background-image: url(${img});
   background-size: 50%;
   background-repeat: no-repeat;
@@ -18,11 +18,12 @@ const DeleteButton = styled.div`
 const Record = styled.div`
   display: flex;
   flex-direction: row;
-  border-left: 1px solid #424242;
-  border-right: 1px solid #424242;
-  border-bottom: 1px solid #424242;
+  border-left: 1px solid ${props => props.theme.font_color};
+  border-right: 1px solid ${props => props.theme.font_color};
+  border-bottom: 1px solid ${props => props.theme.font_color};
   font-size: 18px;
-  background-color: #fff3e0;
+  color: ${props => props.theme.font_color};
+  background-color: ${props => props.theme.basic_background};
   caret-color: transparent !important;
   justify-content: space-between;
   width: auto;
@@ -48,7 +49,7 @@ const TextOrEdit = styled.div`
   .edit {
     width: auto;
     height: 31px;
-    background-color: #fff3e0;
+    background-color: ${props => props.theme.basic_background};
     font-size: 18px;
     border: none;
     padding-top: 2px;
@@ -64,7 +65,7 @@ const TextOrEdit = styled.div`
     border: none;
     padding-left: 7px;
     padding-top: 2px;
-    caret-color: #424242;
+    caret-color: ${props => props.theme.font_color};
   }
   .note-text {
     width: auto;
@@ -73,7 +74,7 @@ const TextOrEdit = styled.div`
     padding-top: 7px;
     padding-left: 7px;
     font-size: 18px;
-    background-color: #fff3e0;
+    background-color: ${props => props.theme.basic_background};
     border: none;
     caret-color: transparent !important;
 
@@ -86,6 +87,13 @@ const TextOrEdit = styled.div`
     color: #bdbdbd; 
   }
 `;
+
+Record.defaultProps = {
+  theme: {
+    basic_background: '#fff3e0',
+    font_color: '#424242'
+  }
+}
 
 export {
   DeleteButton,
