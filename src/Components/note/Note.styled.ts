@@ -88,13 +88,6 @@ const TextOrEdit = styled.div`
   }
 `;
 
-Record.defaultProps = {
-  theme: {
-    basic_background: '#fff3e0',
-    font_color: '#424242'
-  }
-}
-
 export {
   DeleteButton,
   Record,

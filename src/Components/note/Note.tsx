@@ -42,7 +42,7 @@ export const Note: React.FC<Props> = (props) => {
   }
   
   return (
-    <Record /*theme={{font_color: 'red'}}*/>
+    <Record theme={{font_color: '#424242', basic_background: '#fff3e0'}}>
       <RecordNote>
         <input
           className='note-is-done'

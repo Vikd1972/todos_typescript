@@ -75,7 +75,7 @@ const ControlPanelButton = styled.div`
 
 ControlPanel.defaultProps = {
   theme: {
-    basicbackground: "Moccasin",
+    basic_background: "Moccasin",
     active_color: 'gold',
     font_color: '#424242'
   }
