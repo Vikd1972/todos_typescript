@@ -3,10 +3,7 @@ import { nanoid } from '@reduxjs/toolkit';
 
 import { useAppSelector, useAppDispatch } from '../../Store/hooks'
 import { addNewNote, allIsDone } from '../../Store/todoSlice';
-
 import { InputForm } from './InputField.styled'
-
-
 
 function InputField() {
   const [text, setText] = useState('')
@@ -18,7 +15,6 @@ function InputField() {
   const onTextChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
   }
-
   
   const onSaveNewNote = (e: React.KeyboardEvent<HTMLFormElement>) => {  
     e.preventDefault()
@@ -40,7 +36,9 @@ function InputField() {
   }
 
 return (  
-  <InputForm onSubmit={onSaveNewNote}>
+  <InputForm
+    onSubmit={onSaveNewNote}
+   >
     <input
       className='is-done-all' 
       type="checkbox"    

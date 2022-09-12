@@ -31,16 +31,16 @@ export const Header: React.FC = () => {
           onClick={() => dispatch(selectShowFiltered('all'))}
         >All</div>
         <div
-          className={`${'button'} ${'button-active'}`}
+          className="button button-active"
           onClick={() => dispatch(selectShowFiltered('active'))}
         >Active</div>
         <div
-          className={`${'button'} ${'button-completed'}`}
+          className="button button-completed"
           onClick={() => dispatch(selectShowFiltered('completed'))}
         >Completed</div>      
       </ControlPanelButton>
       <div       
-        className={`${'button'} ${clearBtn ? 'button-clear' : undefined}`}
+        className={`button ${clearBtn ? 'button-clear' : ''}`}
         onClick={() => dispatch(clearCompleted())}>
         Clear completed
       </div>

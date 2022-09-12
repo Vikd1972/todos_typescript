@@ -34,27 +34,17 @@ export const todoSlice = createSlice({
       state.notes.splice(index, 1);
     },
 
-    noteIsDone: (state, action: PayloadAction<string>) => {
-      for (let note of state.notes) {
-        if (note.id === action.payload) {
-          note.isDone = !note.isDone;
-        }
-      }      
+    noteIsDone: (state, action: PayloadAction<string>) => {      
+      state.notes.forEach(note => note.id === action.payload ? note.isDone = !note.isDone : note)
     },
 
     allIsDone: state => {
-      for (let note of state.notes) {        
-        note.isDone = !state.isDoneAll;        
-      }       
+      state.notes.forEach(note => note.isDone = !state.isDoneAll)
       state.isDoneAll = !state.isDoneAll
     },
 
-    changeNote: (state, action: PayloadAction<{ id: string;  text: string}>) => {
-      for (let note of state.notes) {
-        if (note.id === action.payload.id) {
-          note.text = action.payload.text;
-        }
-      }  
+    changeNote: (state, action: PayloadAction<{ id: string; text: string }>) => {
+      state.notes.forEach(note => note.id === action.payload.id ? note.text = action.payload.text : note)
     },
 
     clearCompleted: state => {

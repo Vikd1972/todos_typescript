@@ -6,7 +6,7 @@ const TodoField = styled.div`
   justify-content: center;
   align-items: center;
   .todo-name {
-    color: #424242;
+    color: ${({ theme }) => theme.colors.font};
     text-align: center;
     margin-top: 50px;
     font-size: 76px;

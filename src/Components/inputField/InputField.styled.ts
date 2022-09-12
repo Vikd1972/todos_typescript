@@ -5,8 +5,8 @@ const InputForm = styled.form`
   height: 37px;
   color: #424242;
   font-size: 18px;
-  background-color: ${props => props.theme.basic_background};
-  border: 1px solid ${props => props.theme.font_color};
+  background-color: ${({ theme }) => theme.colors.backrgaund};
+  border: 1px solid ${({ theme }) => theme.colors.font};
   display: flex;
   flex-direction: row;
   .is-done-all {
@@ -16,7 +16,7 @@ const InputForm = styled.form`
     cursor: pointer;
   }
   .input-text {
-    background-color: ${props => props.theme.basic_background};
+    background-color: ${({ theme }) => theme.colors.backrgaund};
     width: 100%;
     font-size: 18px;
     border: none;
@@ -24,13 +24,5 @@ const InputForm = styled.form`
     padding-left: 7px;
   }
 `;
-
-
-InputForm.defaultProps = {
-  theme: {
-    basic_background: '#fff3e0',   
-    font_color: '#424242'
-  }
-}
 
 export {InputForm}
